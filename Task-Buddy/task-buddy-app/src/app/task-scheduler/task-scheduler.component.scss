@@ -1,0 +1,135 @@
+$primary-color: #004d4d;
+$secondary-color: #fff6a6;
+$hover-color: rgba(21, 20, 20, 0.828);
+$header-color: #9b89ab;
+$highlight-color: #e6d5e7;
+
+//----------------------- Template Three: Task Scheduler & Task List-------------
+.container_one {
+  display: flex;
+  flex-direction: column; /* Stack the cards vertically */
+  align-items: center; /* Center horizontally */
+  justify-content: center; /* Center vertically */
+  width: 100vw; /* Full width of the viewport */
+  height: 100vh; /* Full height of the viewport */
+  gap: 20px; /* Space between the Task Scheduler and Tasks cards */
+}
+
+/* Task Scheduler Card */
+.scheduler {
+  display: flex;
+  flex-direction: column; /* Stack content vertically inside the card */
+  justify-content: center; /* Center content vertically inside the card */
+  width: 90%; /* 90% of the container width */
+
+  /* Header container */
+  .header {
+    background-color: $header-color;
+    // padding: 10px; convert to rem
+  }
+
+  /* Icon inside header */
+  .header-icon {
+    width: 50px; /* Fixed width for the icon */
+    height: 50px; /* Fixed height for the icon */
+  }
+
+  /* Container for title and subtitle */
+  .header-text {
+    display: flex;
+    flex-direction: column; /* Stack title and subtitle vertically */
+    align-items: flex-start; /* Align text to the left */
+    margin-left: 10px; /* Space between icon and text */
+  }
+
+  /* Title styling */
+  .title {
+    flex-grow: 1;
+    text-align: center;
+    color: $primary-color; /* Main color */
+  }
+
+  .subtitle {
+    color: $secondary-color;
+  }
+
+  /* Inside the Task Scheduler, we keep the form-row as Flexbox */
+  .contents_scheduler .form-row {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between; /* Distribute space between fields */
+  }
+
+  /* Task Description Field */
+  .description-field {
+    flex: 8; /* Task description takes up more space */
+  }
+
+  /* Task Date Field */
+  .date-field {
+    flex: 4; /* Task date takes up less space */
+  }
+
+  mat-card-actions {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%; /* Full width for action buttons */
+  }
+}
+
+/* Tasks Card */
+.tasks {
+  display: flex;
+  flex-direction: column; /* Stack content vertically inside the card */
+  justify-content: center; /* Center content vertically inside the card */
+  width: 90%; /* 90% of the container width */
+  background-color: $highlight-color;
+
+  .contents_tasks {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch; /* Ensure tasks take full width */
+    max-height: 200px; /* Set max height for task list */
+    overflow-y: auto; /* Scrollable task list */
+  }
+}
+
+/* Task item styling */
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative; /* Needed for absolute positioning of buttons */
+
+  &:hover .edit-button,
+  &:hover .delete-button {
+    opacity: 1; /* Show buttons on hover */
+  }
+}
+
+.edit-button,
+.delete-button {
+  opacity: 0; /* Hide buttons initially */
+  transition: opacity 0.3s; /* Smooth transition for opacity */
+  position: absolute;
+  top: 50%; /* Vertically center */
+  transform: translateY(-50%); /* Adjust for vertical centering */
+}
+
+.edit-button {
+  right: 40px; /* Align edit button 40px from the right */
+}
+
+.delete-button {
+  right: 10px; /* Align delete button 10px from the right */
+}
+
+.edit-input {
+  flex-grow: 1; /* Allow the input to grow and fill available space */
+  margin-right: 10px; /* Space between input and save button */
+}
+
+.save-button {
+  display: inline; /* Show save button inline */
+}
