@@ -185,6 +185,8 @@ mat-toolbar {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  display: flex;
+  justify-content: center;
 }
 
 .edit-button {

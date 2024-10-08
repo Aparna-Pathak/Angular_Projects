@@ -1,12 +1,14 @@
-import { Component, model } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Task } from '../model/task';
+
+import { provideNativeDateAdapter } from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatCalendar, MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
@@ -30,8 +32,10 @@ export interface Tile {
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
+  providers: [provideNativeDateAdapter()],
   standalone: true,
   imports: [
+    MatCalendar,
     MatGridListModule,
     MatToolbarModule,
     MatCardModule,
@@ -42,12 +46,12 @@ export interface Tile {
     MatButtonModule,
     MatListModule,
     MatDividerModule,
-    MatIconModule,
     MatSliderModule,
     CommonModule,
     CounterComponent,
     FormsModule,
     NgOptimizedImage,
+    MatIconModule,
   ],
 })
 export class DashboardComponent {

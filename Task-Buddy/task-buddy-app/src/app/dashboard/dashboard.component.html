@@ -66,7 +66,7 @@
                   placeholder="Enter task description"
                 />
               </mat-form-field>
-              <mat-form-field class="example-full-width">
+              <mat-form-field>
                 <mat-label>Choose a date</mat-label>
                 <input
                   matInput
@@ -74,11 +74,10 @@
                   [(ngModel)]="newTaskDate"
                 />
                 <mat-hint>MM/DD/YYYY</mat-hint>
-                <mat-datepicker-toggle matIconSuffix [for]="picker">
-                  <mat-icon matDatepickerToggleIcon
-                    >keyboard_arrow_down</mat-icon
-                  >
-                </mat-datepicker-toggle>
+                <mat-datepicker-toggle
+                  matIconSuffix
+                  [for]="picker"
+                ></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
             </div>
@@ -113,10 +112,12 @@
                     />
                     <button
                       mat-icon-button
+                      color="basic"
+                      aria-label="save icon"
                       (click)="saveTask(i)"
                       class="save-button"
                     >
-                      <mat-icon color="primary">check</mat-icon>
+                      <mat-icon>check</mat-icon>
                     </button>
                   </ng-container>
                   <ng-template #displayTask>
@@ -126,17 +127,21 @@
                     >
                     <button
                       mat-icon-button
+                      color="primary"
+                      aria-label="edit icon"
                       (click)="editTask(i)"
                       class="edit-button"
                     >
-                      <mat-icon color="primary">edit</mat-icon>
+                      <mat-icon>edit</mat-icon>
                     </button>
                     <button
                       mat-icon-button
-                      (click)="deleteTask(i)"
+                      color="warn"
+                      aria-label="delete icon"
                       class="delete-button"
+                      (click)="deleteTask(i)"
                     >
-                      <mat-icon color="warn">delete</mat-icon>
+                      <mat-icon>delete</mat-icon>
                     </button>
                   </ng-template>
                 </mat-list-item>
