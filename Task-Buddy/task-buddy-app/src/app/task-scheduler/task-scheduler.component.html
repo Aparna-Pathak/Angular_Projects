@@ -1,7 +1,7 @@
 <div class="container_one">
-  <mat-card class="scheduler">
+  <mat-card class="tasks_scheduler">
     <mat-card-header class="header">
-      <img src="../assets/task.png" alt="Task Icon" class="header-icon" />
+      <img ngSrc="task.png" alt="Task Icon" class="header-icon" priority />
       <div class="header-text">
         <mat-card-title class="title">Task Scheduler</mat-card-title>
         <mat-card-subtitle class="subtitle"
@@ -11,7 +11,7 @@
     </mat-card-header>
     <hr />
     <mat-card-content class="contents_scheduler">
-      <div class="form-row">
+      <div class="row">
         <mat-form-field class="description-field" appearance="fill">
           <mat-label>What would you like to plan today ...</mat-label>
           <input
@@ -31,7 +31,7 @@
         </mat-form-field>
       </div>
     </mat-card-content>
-    <mat-card-actions>
+    <mat-card-actions class="actions">
       <div class="button-row">
         <button mat-raised-button color="primary" (click)="addTask()">
           Let's add it to the agenda!
@@ -40,7 +40,6 @@
     </mat-card-actions>
   </mat-card>
 
-  <!-- Tasks Card -->
   <mat-card class="tasks">
     <mat-card-header>
       <mat-card-title class="title">Agenda for the Week -</mat-card-title>

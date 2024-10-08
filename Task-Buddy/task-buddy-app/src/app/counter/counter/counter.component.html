@@ -1,5 +1,5 @@
-<div class="container_cards">
-  <mat-card class="task-card">
+<div class="container">
+  <mat-card class="task">
     <mat-card-header class="header">
       <img src="../assets/checklist.png" alt="Task Icon" class="header-icon" />
       <div class="header-text">
@@ -22,12 +22,12 @@
     </mat-card-content>
   </mat-card>
 
-  <mat-card class="done">
+  <mat-card class="task_closure">
     <mat-card-content>
       <h2 class="result">Are we done for the day ...</h2>
       <section class="result-section">
         <mat-slide-toggle
-          class="result-margin"
+          class="done"
           [checked]="checked"
           [disabled]="disabled"
         >

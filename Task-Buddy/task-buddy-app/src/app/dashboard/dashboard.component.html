@@ -11,18 +11,18 @@
       'background-repeat': 'no-repeat'
     }"
   >
-    <!-- Template One: Task-Buddy Header -->
+    <!-- Template One: Header -->
     <ng-container *ngIf="tile.template === 'templateOne'">
-      <mat-toolbar style="background-color: #fff6a6">
-        <h1 style="color: #004d4d">Let's get you ahead with Task-Buddy !</h1>
+      <mat-toolbar>
+        <h1>Let's get you ahead with Task-Buddy !</h1>
       </mat-toolbar>
     </ng-container>
 
     <!-- Template Two: Carousel -->
     <ng-container *ngIf="tile.template === 'templateTwo'">
-      <div class="carousel-container">
+      <div class="carousel">
         <div
-          class="carousel-slide"
+          class="slide"
           *ngFor="let item of wallpapers; let i = index"
           [ngStyle]="{
             'background-size': 'cover',
@@ -37,12 +37,17 @@
       </div>
     </ng-container>
 
-    <!-- Template Three: Task Scheduler -->
+    <!-- Template Three: Task_Scheduler -->
     <ng-container *ngIf="tile.template === 'templateThree'">
       <div class="container_one">
-        <mat-card class="scheduler">
+        <mat-card class="tasks_scheduler">
           <mat-card-header class="header">
-            <img src="../assets/task.png" alt="Task Icon" class="header-icon" />
+            <img
+              ngSrc="task.png"
+              alt="Task Icon"
+              class="header-icon"
+              priority
+            />
             <div class="header-text">
               <mat-card-title class="title">Task Scheduler</mat-card-title>
               <mat-card-subtitle class="subtitle"
@@ -52,7 +57,7 @@
           </mat-card-header>
           <hr />
           <mat-card-content class="contents_scheduler">
-            <div class="form-row">
+            <div class="row">
               <mat-form-field class="description-field" appearance="fill">
                 <mat-label>What would you like to plan today ...</mat-label>
                 <input
@@ -78,7 +83,7 @@
               </mat-form-field>
             </div>
           </mat-card-content>
-          <mat-card-actions>
+          <mat-card-actions class="actions">
             <div class="button-row">
               <button mat-raised-button color="primary" (click)="addTask()">
                 Let's add it to the agenda!
@@ -87,7 +92,7 @@
           </mat-card-actions>
         </mat-card>
 
-        <!-- Tasks Card -->
+        <!-- Tasks -->
         <mat-card class="tasks">
           <mat-card-header>
             <mat-card-title class="title">Agenda for the Week -</mat-card-title>
@@ -150,8 +155,8 @@
 
     <!-- Template Five: Slider -->
     <ng-container *ngIf="tile.template === 'templateFive'">
-      <div class="slider-container">
-        <h2 class="example-h2">How's the Josh?</h2>
+      <div class="slider">
+        <h2 class="slider_text">How's the Josh?</h2>
         <mat-slider
           class="slider"
           min="0"
@@ -169,12 +174,6 @@
     <!-- Template Six -->
     <ng-container *ngIf="tile.template === 'templateSix'"> </ng-container>
 
-    <!-- Template Seven -->
-    <ng-container *ngIf="tile.template === 'templateSeven'"> </ng-container>
-
-    <!-- Template Eight -->
-    <ng-container *ngIf="tile.template === 'templateEight'"> </ng-container>
-
     <ng-container
       *ngIf="
         ![
@@ -182,9 +181,7 @@
           'templateTwo',
           'templateThree',
           'templateFour',
-          'templateFive',
-          'templateSix',
-          'templateSeven'
+          'templateFive'
         ].includes(tile.template)
       "
     ></ng-container>

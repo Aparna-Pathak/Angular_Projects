@@ -1,12 +1,12 @@
 .button-container {
   display: flex;
-  justify-content: center; // Center buttons horizontally
-  align-items: center; // Align buttons vertically (if necessary)
-  gap: 10px; // Space between buttons
-  padding: 16px; // Padding around the container (adjust as needed)
-  flex-wrap: wrap; // Allow wrapping if needed (optional for responsive design)
-}
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 16px;
+  flex-wrap: wrap;
 
-button {
-  flex: 0 1 auto; // Allow buttons to shrink or grow if needed
+  button {
+    flex: 0 1 auto; // Allow buttons to shrink or grow if needed
+  }
 }

@@ -15,13 +15,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSliderModule } from '@angular/material/slider';
 import { CounterComponent } from '../counter/counter/counter.component';
 import { FormsModule } from '@angular/forms';
+import { NgOptimizedImage } from '@angular/common';
 
 export interface Tile {
   color?: string;
   cols: number;
   rows: number;
   text: string;
-  template: string; // New property
+  template: string;
   image?: string;
 }
 
@@ -46,6 +47,7 @@ export interface Tile {
     CommonModule,
     CounterComponent,
     FormsModule,
+    NgOptimizedImage,
   ],
 })
 export class DashboardComponent {
@@ -86,37 +88,15 @@ export class DashboardComponent {
       color: '#A7E6E1',
       template: 'templateFive',
     },
-    {
-      text: 'Six',
-      cols: 4,
-      rows: 1,
-      color: '#F9F4EC',
-      template: 'templateSix',
-    },
-    {
-      text: 'Seven',
-      cols: 4,
-      rows: 1,
-      color: '#F8C1BB',
-      template: 'templateSeven',
-    },
-    {
-      text: 'Eight',
-      cols: 4,
-      rows: 1,
-      color: '#D0E6D8',
-      template: 'templateEight',
-    },
   ];
 
   Tasks: Task[] = [];
   newTaskTitle: string = '';
-  newTaskDate: Date | null = null; // Initialize as null for the datepicker
+  newTaskDate: Date | null = null;
   currentSlide = 0;
   intervalId: any;
 
   constructor() {
-    // Load tasks from local storage on initialization
     const storedTasks = localStorage.getItem('tasks');
     if (storedTasks) {
       this.Tasks = JSON.parse(storedTasks);
@@ -126,49 +106,9 @@ export class DashboardComponent {
   ngOnInit(): void {
     const savedTasks = localStorage.getItem('tasks');
     this.Tasks = savedTasks ? JSON.parse(savedTasks) : [];
-    // Rotate the wallpapers every 5 seconds
     this.intervalId = setInterval(() => {
       this.currentSlide = (this.currentSlide + 1) % this.wallpapers.length;
     }, 5000);
-  }
-
-  addTask() {
-    if (this.newTaskTitle.trim().length && this.newTaskDate) {
-      const newTask: Task = {
-        id: Date.now(),
-        title: this.newTaskTitle,
-        date: this.newTaskDate,
-      };
-
-      // Add the new task to the tasks array
-      this.Tasks.push(newTask);
-
-      // Reset the input fields
-      this.newTaskTitle = '';
-      this.newTaskDate = null; // Clear the datepicker
-
-      // Store the updated tasks in local storage
-      localStorage.setItem('tasks', JSON.stringify(this.Tasks));
-    }
-  }
-
-  editTask(index: number) {
-    this.Tasks[index].isEditing = true; // Set editing state to true
-  }
-
-  saveTask(index: number) {
-    this.Tasks[index].isEditing = false; // Save the task and exit editing mode
-    // Any additional save logic can be added here
-  }
-
-  cancelEdit(index: number) {
-    this.Tasks[index].isEditing = false; // Exit editing mode without saving
-    // Optionally, you can revert changes if necessary
-  }
-
-  deleteTask(index: number) {
-    this.Tasks.splice(index, 1);
-    localStorage.setItem('tasks', JSON.stringify(this.Tasks));
   }
 
   wallpapers = [
@@ -192,6 +132,39 @@ export class DashboardComponent {
     },
   ];
 
+  addTask() {
+    if (this.newTaskTitle.trim().length && this.newTaskDate) {
+      const newTask: Task = {
+        id: Date.now(),
+        title: this.newTaskTitle,
+        date: this.newTaskDate,
+      };
+      this.Tasks.push(newTask);
+
+      this.newTaskTitle = '';
+      this.newTaskDate = null;
+
+      localStorage.setItem('tasks', JSON.stringify(this.Tasks));
+    }
+  }
+
+  editTask(index: number) {
+    this.Tasks[index].isEditing = true;
+  }
+
+  saveTask(index: number) {
+    this.Tasks[index].isEditing = false;
+  }
+
+  cancelEdit(index: number) {
+    this.Tasks[index].isEditing = false;
+  }
+
+  deleteTask(index: number) {
+    this.Tasks.splice(index, 1);
+    localStorage.setItem('tasks', JSON.stringify(this.Tasks));
+  }
+
   formatLabel(value: number): string {
     if (value >= 1000) {
       return Math.round(value / 1000) + '%';
@@ -202,7 +175,7 @@ export class DashboardComponent {
 
   ngOnDestroy() {
     if (this.intervalId) {
-      clearInterval(this.intervalId); // Stop the interval when component is destroyed
+      clearInterval(this.intervalId);
     }
   }
 }

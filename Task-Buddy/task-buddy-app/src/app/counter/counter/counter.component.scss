@@ -1,82 +1,67 @@
-/* Flexbox container for cards */
-.container_cards {
-  display: flex; /* Enable Flexbox layout */
-  flex-direction: column; /* Stack cards vertically */
-  align-items: center; /* Center cards horizontally */
-  justify-content: center; /* Center cards vertically */
-  width: 100vw; /* Full width of the viewport */
-  height: 100vh; /* Full height of the viewport */
-  gap: 20px; /* Gap between cards */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  gap: 20px;
 }
 
-/* Card styling */
-.task-card {
-  width: 300px; /* Fixed width for cards */
-  max-width: 100%; /* Ensure it doesn’t exceed container width */
-  display: flex; /* Flexbox for card content */
-  flex-direction: column; /* Stack content inside cards vertically */
-  justify-content: flex-start; /* Align items to the start of the card */
+.task {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   background-color: #f9f4ec;
 }
 
-/* Header container */
 .header {
   display: flex;
-  align-items: center; /* Vertically center items within the header */
-  justify-content: center; /* Horizontally center the entire row */
+  align-items: center;
+  justify-content: center;
   background-color: #ffd1b3;
   padding: 10px;
-  // width: 100%; /* Ensure header spans the full width of the card */
+
+  .header-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .header-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 10px;
+  }
+
+  .title {
+    color: #004d4d;
+    font-size: 1.5em;
+  }
+
+  .subtitle {
+    color: #008080;
+    font-size: 1em;
+  }
 }
 
-/* Icon inside header */
-.header-icon {
-  width: 40px; /* Fixed width for the icon */
-  height: 40px; /* Fixed height for the icon */
-}
-
-/* Container for title and subtitle */
-.header-text {
+.task_closure {
   display: flex;
-  flex-direction: column; /* Stack title and subtitle vertically */
-  align-items: flex-start; /* Align text to the left */
-  margin-left: 10px; /* Space between icon and text */
-}
-
-/* Title styling */
-.title {
-  color: #004d4d;
-  font-size: 1.5em;
-  margin: 0; /* Remove default margin */
-}
-
-/* Subtitle styling */
-.subtitle {
-  color: #008080;
-  font-size: 1em;
-  margin: 0; /* Remove default margin */
-}
-
-/* Result Card */
-.done {
-  display: flex; /* Enable Flexbox for result card content */
-  flex-direction: column; /* Stack content vertically */
-  align-items: center; /* Center content horizontally */
-  justify-content: center; /* Center content vertically */
-  width: 300px; /* Fixed width for result card */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
   background-color: #f8c1bb;
   color: #004d4d;
-}
 
-/* Center align the slide toggle in result section */
-.result-section {
-  display: flex; /* Enable Flexbox for section */
-  justify-content: center; /* Center content horizontally */
-  width: 100%; /* Full width for centering the slide toggle */
-}
+  .result-section {
+    display: flex;
+    justify-content: center;
+  }
 
-/* Optional: Adjust the slide toggle if needed */
-mat-slide-toggle {
-  display: flex; /* Flexbox for slide toggle */
-  align-items: center; /* Center label vertically */
+  .done {
+    display: flex;
+    align-items: center;
+  }
 }

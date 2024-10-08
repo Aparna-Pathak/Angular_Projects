@@ -1,12 +1,12 @@
 .container {
   display: flex;
-  flex-direction: column; // Stack elements vertically
-  align-items: center; // Center the message horizontally
-  padding: 16px; // Add padding inside the container for spacing
-  gap: 16px; // Space between the <hr> and the message
-}
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+  gap: 16px;
 
-.accomplishment-message {
-  color: #b393ab; // Apply color from inline style
-  text-align: center; // Center the text inside the container
+  .accomplishment-message {
+    color: #b393ab;
+    text-align: center;
+  }
 }
