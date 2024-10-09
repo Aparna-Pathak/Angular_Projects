@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CounterComponent } from '../counter/counter/counter.component';
 import { Task } from '../model/task';
-
 import { provideNativeDateAdapter } from '@angular/material/core';
+import { LocalStorageService } from '../local-storage.service';
+
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -14,11 +16,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
-import { MatSliderModule } from '@angular/material/slider';
-import { CounterComponent } from '../counter/counter/counter.component';
-
-import { NgOptimizedImage } from '@angular/common';
-import { LocalStorageService } from '../local-storage.service';
 import { FormsModule } from '@angular/forms';
 
 export interface Tile {
@@ -37,6 +34,8 @@ export interface Tile {
   providers: [provideNativeDateAdapter()],
   standalone: true,
   imports: [
+    CommonModule,
+    CounterComponent,
     MatCalendar,
     MatGridListModule,
     MatToolbarModule,
@@ -48,11 +47,7 @@ export interface Tile {
     MatButtonModule,
     MatListModule,
     MatDividerModule,
-    MatSliderModule,
-    CommonModule,
-    CounterComponent,
     FormsModule,
-    NgOptimizedImage,
     MatIconModule,
   ],
 })
@@ -100,9 +95,9 @@ export class DashboardComponent {
   intervalId: any;
   Tasks: Task[] = [];
   newTaskTitle: string = '';
-  newTaskDate: Date | null = null; // Initialize as null for the datepicker
+  newTaskDate: Date | null = null;
 
-  constructor(private localStorageService: LocalStorageService) {} // Inject the LocalStorageService
+  constructor(private localStorageService: LocalStorageService) {}
 
   ngOnInit(): void {
     const savedTasks = this.localStorageService.getItem('tasks');
@@ -147,32 +142,23 @@ export class DashboardComponent {
       this.localStorageService.setItem('tasks', this.Tasks);
     }
   }
+
   editTask(index: number) {
-    this.Tasks[index].isEditing = true; // Set editing state to true
+    this.Tasks[index].isEditing = true;
   }
 
   saveTask(index: number) {
-    this.Tasks[index].isEditing = false; // Save the task and exit editing mode
-    // Store updated tasks in local storage
+    this.Tasks[index].isEditing = false;
     this.localStorageService.setItem('tasks', this.Tasks);
   }
 
   cancelEdit(index: number) {
-    this.Tasks[index].isEditing = false; // Exit editing mode without saving
-    // Optionally, you can revert changes if necessary
+    this.Tasks[index].isEditing = false;
   }
 
   deleteTask(index: number) {
     this.Tasks.splice(index, 1);
-    this.localStorageService.setItem('tasks', this.Tasks); // Update local storage after deletion
-  }
-
-  formatLabel(value: number): string {
-    if (value >= 1000) {
-      return Math.round(value / 1000) + '%';
-    }
-
-    return `${value}`;
+    this.localStorageService.setItem('tasks', this.Tasks);
   }
 
   ngOnDestroy() {

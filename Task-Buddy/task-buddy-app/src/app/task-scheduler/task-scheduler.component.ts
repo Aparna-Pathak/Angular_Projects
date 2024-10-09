@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { LocalStorageService } from '../local-storage.service';
+import { FormsModule } from '@angular/forms';
 import { Task } from '../model/task';
+
 import { MatGridListModule } from '@angular/material/grid-list';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -11,9 +14,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { LocalStorageService } from '../local-storage.service';
 
 @Component({
   selector: 'app-task-list',
@@ -21,8 +21,9 @@ import { LocalStorageService } from '../local-storage.service';
   styleUrls: ['./task-scheduler.component.scss'],
   standalone: true,
   imports: [
+    CommonModule,
+    FormsModule,
     MatGridListModule,
-    MatToolbarModule,
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
@@ -32,16 +33,14 @@ import { LocalStorageService } from '../local-storage.service';
     MatListModule,
     MatDividerModule,
     MatIconModule,
-    CommonModule,
-    FormsModule,
   ],
 })
 export class TaskSchedulerComponent implements OnInit {
   Tasks: Task[] = [];
   newTaskTitle: string = '';
-  newTaskDate: Date | null = null; // Initialize as null for the datepicker
+  newTaskDate: Date | null = null;
 
-  constructor(private localStorageService: LocalStorageService) {} // Inject the LocalStorageService
+  constructor(private localStorageService: LocalStorageService) {}
 
   ngOnInit(): void {
     const savedTasks = this.localStorageService.getItem('tasks');
@@ -62,24 +61,21 @@ export class TaskSchedulerComponent implements OnInit {
       this.localStorageService.setItem('tasks', this.Tasks);
     }
   }
-
   editTask(index: number) {
-    this.Tasks[index].isEditing = true; // Set editing state to true
+    this.Tasks[index].isEditing = true;
   }
 
   saveTask(index: number) {
-    this.Tasks[index].isEditing = false; // Save the task and exit editing mode
-    // Store updated tasks in local storage
+    this.Tasks[index].isEditing = false;
     this.localStorageService.setItem('tasks', this.Tasks);
   }
 
   cancelEdit(index: number) {
-    this.Tasks[index].isEditing = false; // Exit editing mode without saving
-    // Optionally, you can revert changes if necessary
+    this.Tasks[index].isEditing = false;
   }
 
   deleteTask(index: number) {
     this.Tasks.splice(index, 1);
-    this.localStorageService.setItem('tasks', this.Tasks); // Update local storage after deletion
+    this.localStorageService.setItem('tasks', this.Tasks);
   }
 }

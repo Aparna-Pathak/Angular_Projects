@@ -11,14 +11,12 @@
       'background-repeat': 'no-repeat'
     }"
   >
-    <!-- Template One: Header -->
     <ng-container *ngIf="tile.template === 'templateOne'">
       <mat-toolbar>
         <h1>Let's get you ahead with Task-Buddy !</h1>
       </mat-toolbar>
     </ng-container>
 
-    <!-- Template Two: Carousel -->
     <ng-container *ngIf="tile.template === 'templateTwo'">
       <div class="carousel">
         <div
@@ -37,13 +35,11 @@
       </div>
     </ng-container>
 
-    <!-- Template Three: Task_Scheduler -->
     <ng-container *ngIf="tile.template === 'templateThree'">
       <div class="container_one">
         <mat-card class="tasks_scheduler">
           <mat-card-header class="header">
-            <img ngSrc="task.png" />
-            alt="Task Icon" class="header-icon" priority />
+            <img src="../assets/task.png" width="50" height="50" />
             <div class="header-text">
               <mat-card-title class="title">Task Scheduler</mat-card-title>
               <mat-card-subtitle class="subtitle"
@@ -87,7 +83,6 @@
           </mat-card-actions>
         </mat-card>
 
-        <!-- Tasks -->
         <mat-card class="tasks">
           <mat-card-header>
             <mat-card-title class="title">Agenda for the Week -</mat-card-title>
@@ -149,31 +144,11 @@
       </div>
     </ng-container>
 
-    <!-- Template Four: Counter -->
     <ng-container *ngIf="tile.template === 'templateFour'">
       <app-counter></app-counter>
     </ng-container>
 
-    <!-- Template Five: Slider -->
-    <ng-container *ngIf="tile.template === 'templateFive'">
-      <div class="slider">
-        <h2 class="slider_text">How's the Josh?</h2>
-        <mat-slider
-          class="slider"
-          min="0"
-          max="100000"
-          step="1000"
-          showTickMarks
-          discrete
-          [displayWith]="formatLabel"
-        >
-          <input matSliderThumb />
-        </mat-slider>
-      </div>
-    </ng-container>
-
-    <!-- Template Six -->
-    <ng-container *ngIf="tile.template === 'templateSix'"> </ng-container>
+    <ng-container *ngIf="tile.template === 'templateFive'"> </ng-container>
 
     <ng-container
       *ngIf="

@@ -1,11 +1,9 @@
-//Global Variables
-$primary-color: #004d4d; /* Main color */
+$primary-color: #004d4d;
 $secondary-color: #fff6a6;
 $hover-color: rgba(21, 20, 20, 0.828);
 $header-color: #9b89ab;
 $highlight-color: #e6d5e7;
 
-//Template One: Header
 mat-toolbar {
   background-color: $secondary-color;
   display: flex;
@@ -18,7 +16,6 @@ mat-toolbar {
   }
 }
 
-//Template Two: Carousel
 .carousel {
   display: flex;
   align-items: center;
@@ -29,7 +26,6 @@ mat-toolbar {
   overflow: hidden;
 
   .slide {
-    display: flex;
     align-items: center;
     justify-content: center;
     position: absolute;
@@ -83,8 +79,6 @@ mat-toolbar {
   }
 }
 
-//Template Three: Task Scheduler & Tasks
-
 .container_one {
   display: flex;
   flex-direction: column;
@@ -92,144 +86,106 @@ mat-toolbar {
   justify-content: center;
   width: 100vw;
   height: 100vh;
-  gap: 1.25rem; /*(20px = 1.25rem) */
-}
+  gap: 1.25rem;
 
-.tasks_scheduler {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 90%;
-
-  .header {
-    background-color: $header-color;
-    padding: 0.625rem; /* (10px= 0.625rem)*/
+  .tasks_scheduler {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
+    width: 90%;
+
+    .header {
+      background-color: $header-color;
+      padding: 0.625rem;
+
+      .header-icon {
+        width: 3.125rem;
+        height: 3.125rem;
+      }
+
+      .header-text {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .title {
+        flex-grow: 1;
+        text-align: center;
+        color: $primary-color;
+      }
+
+      .subtitle {
+        color: $secondary-color;
+      }
+    }
+
+    .contents_scheduler .row {
+      display: flex;
+      gap: 0.625rem;
+      justify-content: space-between;
+      .description-field {
+        flex: 8;
+      }
+      .date-field {
+        flex: 4;
+      }
+    }
+
+    .actions {
+      justify-content: flex-start;
+    }
   }
 
-  .header-icon {
-    width: 3.125rem; /* (50px = 3.125rem) */
-    height: 3.125rem; /* (50px = 3.125rem) */
-  }
-
-  .header-text {
+  .tasks {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 0.625rem; /* (10px = 0.625rem) */
-  }
+    justify-content: center;
+    width: 90%;
+    background-color: $highlight-color;
 
-  .title {
-    flex-grow: 1;
-    text-align: center;
-    color: $primary-color;
-  }
+    .contents_tasks {
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: stretch;
+      max-height: 12.5rem;
+      overflow-y: auto;
 
-  .subtitle {
-    color: $secondary-color;
-  }
+      .task-item {
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
 
-  .contents_scheduler .row {
-    display: flex;
-    gap: 0.625rem; /* (10px= 0.625rem) */
-    justify-content: space-between;
-  }
-  .description-field {
-    flex: 8;
-  }
-  .date-field {
-    flex: 4;
-  }
+        &:hover .edit-button,
+        &:hover .delete-button {
+          opacity: 1;
+        }
+      }
 
-  .actions {
-    display: flex;
-    justify-content: flex-start;
-  }
-}
+      .edit-button,
+      .delete-button {
+        opacity: 0;
+        transition: opacity 0.3s;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        justify-content: center;
+      }
 
-.tasks {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 90%;
-  background-color: $highlight-color;
+      .edit-button {
+        right: 2.5rem;
+      }
 
-  .contents_tasks {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: stretch;
-    max-height: 12.5rem; /* (200px = 12.5rem) */
-    overflow-y: auto;
-  }
-}
+      .delete-button {
+        right: 0.625rem;
+      }
 
-.task-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
+      .edit-input {
+        flex-grow: 1;
+      }
 
-  &:hover .edit-button,
-  &:hover .delete-button {
-    opacity: 1;
-  }
-}
-
-.edit-button,
-.delete-button {
-  opacity: 0;
-  transition: opacity 0.3s;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  justify-content: center;
-}
-
-.edit-button {
-  right: 2.5rem; /* (40px = 2.5rem) */
-}
-
-.delete-button {
-  right: 0.625rem; /* (10px = 0.625rem) */
-}
-
-.edit-input {
-  flex-grow: 1;
-}
-
-.save-button {
-  display: inline;
-}
-
-//Template Four: Counter
-app-counter {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-}
-
-//Template Five: Slider
-.slider {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  max-width: 600px;
-
-  .slider_text {
-    color: $primary-color;
-    text-align: center;
-  }
-
-  mat-slider {
-    display: flex;
-    width: 70%;
+      .save-button {
+        display: inline;
+      }
+    }
   }
 }
