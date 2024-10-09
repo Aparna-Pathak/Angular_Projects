@@ -13,6 +13,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { LocalStorageService } from '../local-storage.service';
 
 @Component({
   selector: 'app-task-list',
@@ -40,9 +41,11 @@ export class TaskSchedulerComponent implements OnInit {
   newTaskTitle: string = '';
   newTaskDate: Date | null = null; // Initialize as null for the datepicker
 
+  constructor(private localStorageService: LocalStorageService) {} // Inject the LocalStorageService
+
   ngOnInit(): void {
-    let savedTasks = localStorage.getItem('tasks');
-    this.Tasks = savedTasks ? JSON.parse(savedTasks) : [];
+    const savedTasks = this.localStorageService.getItem('tasks');
+    this.Tasks = savedTasks ? savedTasks : [];
   }
 
   addTask() {
@@ -53,15 +56,10 @@ export class TaskSchedulerComponent implements OnInit {
         date: this.newTaskDate,
       };
 
-      // Add the new task to the tasks array
       this.Tasks.push(newTask);
-
-      // Reset the input fields
       this.newTaskTitle = '';
-      this.newTaskDate = null; // Clear the datepicker
-
-      // Store the updated tasks in local storage
-      localStorage.setItem('tasks', JSON.stringify(this.Tasks));
+      this.newTaskDate = null;
+      this.localStorageService.setItem('tasks', this.Tasks);
     }
   }
 
@@ -71,7 +69,8 @@ export class TaskSchedulerComponent implements OnInit {
 
   saveTask(index: number) {
     this.Tasks[index].isEditing = false; // Save the task and exit editing mode
-    // Any additional save logic can be added here
+    // Store updated tasks in local storage
+    this.localStorageService.setItem('tasks', this.Tasks);
   }
 
   cancelEdit(index: number) {
@@ -81,6 +80,6 @@ export class TaskSchedulerComponent implements OnInit {
 
   deleteTask(index: number) {
     this.Tasks.splice(index, 1);
-    localStorage.setItem('tasks', JSON.stringify(this.Tasks));
+    this.localStorageService.setItem('tasks', this.Tasks); // Update local storage after deletion
   }
 }

@@ -18,6 +18,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { CounterComponent } from '../counter/counter/counter.component';
 import { FormsModule } from '@angular/forms';
 import { NgOptimizedImage } from '@angular/common';
+import { LocalStorageService } from '../local-storage.service';
 
 export interface Tile {
   color?: string;
@@ -94,22 +95,17 @@ export class DashboardComponent {
     },
   ];
 
-  Tasks: Task[] = [];
-  newTaskTitle: string = '';
-  newTaskDate: Date | null = null;
   currentSlide = 0;
   intervalId: any;
+  Tasks: Task[] = [];
+  newTaskTitle: string = '';
+  newTaskDate: Date | null = null; // Initialize as null for the datepicker
 
-  constructor() {
-    const storedTasks = localStorage.getItem('tasks');
-    if (storedTasks) {
-      this.Tasks = JSON.parse(storedTasks);
-    }
-  }
+  constructor(private localStorageService: LocalStorageService) {} // Inject the LocalStorageService
 
   ngOnInit(): void {
-    const savedTasks = localStorage.getItem('tasks');
-    this.Tasks = savedTasks ? JSON.parse(savedTasks) : [];
+    const savedTasks = this.localStorageService.getItem('tasks');
+    this.Tasks = savedTasks ? savedTasks : [];
     this.intervalId = setInterval(() => {
       this.currentSlide = (this.currentSlide + 1) % this.wallpapers.length;
     }, 5000);
@@ -143,30 +139,31 @@ export class DashboardComponent {
         title: this.newTaskTitle,
         date: this.newTaskDate,
       };
-      this.Tasks.push(newTask);
 
+      this.Tasks.push(newTask);
       this.newTaskTitle = '';
       this.newTaskDate = null;
-
-      localStorage.setItem('tasks', JSON.stringify(this.Tasks));
+      this.localStorageService.setItem('tasks', this.Tasks);
     }
   }
-
   editTask(index: number) {
-    this.Tasks[index].isEditing = true;
+    this.Tasks[index].isEditing = true; // Set editing state to true
   }
 
   saveTask(index: number) {
-    this.Tasks[index].isEditing = false;
+    this.Tasks[index].isEditing = false; // Save the task and exit editing mode
+    // Store updated tasks in local storage
+    this.localStorageService.setItem('tasks', this.Tasks);
   }
 
   cancelEdit(index: number) {
-    this.Tasks[index].isEditing = false;
+    this.Tasks[index].isEditing = false; // Exit editing mode without saving
+    // Optionally, you can revert changes if necessary
   }
 
   deleteTask(index: number) {
     this.Tasks.splice(index, 1);
-    localStorage.setItem('tasks', JSON.stringify(this.Tasks));
+    this.localStorageService.setItem('tasks', this.Tasks); // Update local storage after deletion
   }
 
   formatLabel(value: number): string {

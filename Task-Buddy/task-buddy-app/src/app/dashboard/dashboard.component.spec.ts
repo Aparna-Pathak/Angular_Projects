@@ -8,13 +8,18 @@ describe('DashboardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DashboardComponent]
-    })
-    .compileComponents();
-    
+      imports: [DashboardComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(DashboardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    const mockLocalStorage = {
+      getItem: (key: string) => (key === 'someKey' ? 'someValue' : null),
+      setItem: (key: string, value: string) => {},
+    };
+    spyOn(localStorage, 'getItem').and.callFake(mockLocalStorage.getItem);
+    spyOn(localStorage, 'setItem').and.callFake(mockLocalStorage.setItem);
   });
 
   it('should create', () => {

@@ -1,12 +1,12 @@
 <div class="container_one">
   <mat-card class="tasks_scheduler">
     <mat-card-header class="header">
-      <img ngSrc="task.png" alt="Task Icon" class="header-icon" priority />
+      <img src="task.png" alt="Task Icon" class="header-icon" priority />
       <div class="header-text">
         <mat-card-title class="title">Task Scheduler</mat-card-title>
-        <mat-card-subtitle class="subtitle"
-          >Let's get started for the day</mat-card-subtitle
-        >
+        <mat-card-subtitle class="subtitle">
+          Let's get started for the day
+        </mat-card-subtitle>
       </div>
     </mat-card-header>
     <hr />
@@ -63,9 +63,9 @@
               </button>
             </ng-container>
             <ng-template #displayTask>
-              <span class="task-text"
-                >{{ task.title }} - {{ task.date | date : "dd.MM.yyyy" }}</span
-              >
+              <span class="task-text">
+                {{ task.title }} - {{ task.date | date : "dd.MM.yyyy" }}
+              </span>
               <button mat-icon-button (click)="editTask(i)" class="edit-button">
                 <mat-icon color="primary">edit</mat-icon>
               </button>
