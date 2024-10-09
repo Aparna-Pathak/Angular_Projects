@@ -7,16 +7,26 @@ export class LocalStorageService {
   constructor() {}
 
   getItem(key: string): any {
-    if (typeof window !== 'undefined') {
+    if (key) {
       const item = localStorage.getItem(key);
-      return item ? JSON.parse(item) : null;
+      try {
+        return item ? JSON.parse(item) : null; // Parse JSON safely
+      } catch (e) {
+        console.error(`Error parsing localStorage item for key: ${key}`, e);
+        return null; // Return null if JSON is invalid
+      }
     }
-    return null; // Handle the server-side rendering case
+    return null; // Handle SSR case
   }
 
   setItem(key: string, value: any): void {
-    if (typeof window !== 'undefined') {
-      localStorage.setItem(key, JSON.stringify(value));
+    if (value) {
+      try {
+        const stringValue = value?.toString() || JSON.stringify(value); // Safely handle null/undefined
+        localStorage.setItem(key, stringValue);
+      } catch (e) {
+        console.error(`Error setting localStorage item for key: ${key}`, e);
+      }
     }
   }
 }

@@ -16,9 +16,10 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSliderModule } from '@angular/material/slider';
 import { CounterComponent } from '../counter/counter/counter.component';
-import { FormsModule } from '@angular/forms';
+
 import { NgOptimizedImage } from '@angular/common';
 import { LocalStorageService } from '../local-storage.service';
+import { FormsModule } from '@angular/forms';
 
 export interface Tile {
   color?: string;
