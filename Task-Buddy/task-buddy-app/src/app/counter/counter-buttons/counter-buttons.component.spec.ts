@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CounterButtonsComponent } from './counter-buttons.component';
 
 describe('CounterButtonsComponent', () => {
@@ -8,9 +7,8 @@ describe('CounterButtonsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CounterButtonsComponent]
-    })
-    .compileComponents();
+      imports: [CounterButtonsComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(CounterButtonsComponent);
     component = fixture.componentInstance;

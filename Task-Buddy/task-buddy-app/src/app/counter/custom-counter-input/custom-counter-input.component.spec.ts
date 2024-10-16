@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CustomCounterInputComponent } from './custom-counter-input.component';
 
 describe('CustomCounterInputComponent', () => {
@@ -8,9 +7,8 @@ describe('CustomCounterInputComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CustomCounterInputComponent]
-    })
-    .compileComponents();
+      imports: [CustomCounterInputComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(CustomCounterInputComponent);
     component = fixture.componentInstance;

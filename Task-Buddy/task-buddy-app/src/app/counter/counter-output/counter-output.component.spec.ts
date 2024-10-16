@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CounterOutputComponent } from './counter-output.component';
 
 describe('CounterOutputComponent', () => {
@@ -8,9 +7,8 @@ describe('CounterOutputComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CounterOutputComponent]
-    })
-    .compileComponents();
+      imports: [CounterOutputComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(CounterOutputComponent);
     component = fixture.componentInstance;

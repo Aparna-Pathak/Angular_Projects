@@ -6,7 +6,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { CounterButtonsComponent } from '../counter-buttons/counter-buttons.component';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { CustomCounterInputComponent } from '../custom-counter-input/custom-counter-input.component';
 
 @Component({
@@ -22,13 +21,10 @@ import { CustomCounterInputComponent } from '../custom-counter-input/custom-coun
     MatDatepickerModule,
     CounterOutputComponent,
     CounterButtonsComponent,
-    MatSlideToggleModule,
     CustomCounterInputComponent,
   ],
 })
 export class CounterComponent implements OnInit {
-  checked = false;
-  disabled = false;
   constructor() {}
   ngOnInit(): void {}
 }

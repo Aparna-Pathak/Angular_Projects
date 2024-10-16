@@ -1,3 +1,10 @@
+$primary-color: #004d4d;
+$secondary-color: #34070b46;
+$hover-color: rgba(225, 190, 231, 0.5);
+$header-color: #fff9c4;
+$highlight-color: #bbe1fa;
+$grid-color: #ffced1;
+
 .container {
   display: flex;
   flex-direction: column;
@@ -5,8 +12,9 @@
   gap: 1.25rem;
 
   .header {
-    background-color: #ffd1b3;
+    display: flex;
     align-items: center;
+    background-color: $header-color;
     padding: 0.325rem;
     gap: 0.625rem;
 
@@ -17,42 +25,48 @@
     }
 
     .header-text {
+      display: flex;
       flex-direction: column;
       align-items: flex-start;
     }
 
     .title {
-      color: #004d4d;
+      color: $primary-color;
       font-size: 1.5em;
     }
 
     .subtitle {
-      color: #008080;
+      color: $secondary-color;
       font-size: 1em;
     }
   }
 
   .task {
-    width: 25.75rem;
+    display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    background-color: #f9f4ec;
+    width: 25.75rem;
+    background-color: $highlight-color;
+    padding: 0.625rem;
   }
 
-  .task_closure {
+  .task_state {
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 25.75rem;
-    background-color: #f8c1bb;
-    color: #004d4d;
+    background-color: $grid-color;
+    color: $primary-color;
     gap: 1rem;
 
     .result-section {
+      display: flex;
       justify-content: center;
     }
 
     .done {
+      display: flex;
       align-items: center;
       gap: 0.625rem;
     }
